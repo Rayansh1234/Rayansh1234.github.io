@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <title>Latin: An ancient Language</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <style>
+            body {
+                background-color: black;
+                color: white;
+                position: absolute;
+                transition: width 2s ease-out;
+                margin: 0px;
+                padding: 20px;
+            }
+            html {
+                overflow-x: hidden;
+                width: 100%;
+                font-family: 'Times New Roman', Times, serif;
+            }
+            p, h1, h2, h3, img {
+                transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                left 1.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                top 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+                position: absolute;
+                width: calc(100vw - 40px);
+            }
+            p {font-size: 20px;}
+            h3 {font-size: 24px;}
+            h2 {font-size: 26px;}
+            h1 {font-size: 32px;}
+            select {
+                position: relative;
+                margin: 20px 0;
+                display: block;
+                padding: 5px;
+                background: #333;
+                color: white;
+                border: 1px solid #666;
+                border-radius: 8px;
+                z-index: 100;
+            }
+        </style>
+    </head>
+    <body>
+        <select onchange="onSelect(this.value)" style="position: relative; margin-top: 20px;">
+            <option value="">Select an action</option>
+            <option value="A">Show A</option>
+            <option value="B">Show B</option>
+            <option value="C">Show C</option>
+            <option value="D">Show D</option>
+        </select>
+        <h1 class="a">
+            A is for Apple
+        </h1>
+        <h2 class="b">
+            B is for Banana
+        </h2>
+        <h3 class="c">
+            C is for Carrot
+        </h3>
+        <h2 class="d">
+            Test Text
+        </h2>
+        <p class="d">
+            The following articles present a brief history of the Latin language periods, providing a synopsis of cultural, grammatical, and style differences that mark each major division. In addition and where appropriate, it is indicated where Latin has had an influence on modern languages both subordinate and cognate to Latin.
+
+It should be noted that most modern Latin courses are based on the classical period. This period is noted for its
+        </p>
+        <script>
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            var elementsArray = Array.from(document.querySelectorAll("[class]"));
+            var uniqueClasses = [...new Set(
+                elementsArray.map(element => element.className))];
+            var jaggedArray = [];
+            var current = "a"
+            var canChange = true;
+
+            // Initialize elements
+            function initializeElements() {
+                // Create jagged array
+                uniqueClasses.forEach(elementClass => {
+                    jaggedArray.push(elementsArray.filter(element => 
+                    element.className == elementClass))
+                });
+
+                // Position elements within their classes
+                jaggedArray.forEach(classElements => {
+                    classElements.forEach((element, index) => {
+                        element.style.top = (60 + (index * 40)) + "px";
+                        element.style.left = "20px";
+                    });
+                });
+
+                // Set initial visibility
+                uniqueClasses.forEach(className => {
+                    if (className !== current) {
+                        setClassProperty(className, "opacity", "0");
+                        runFunc(className, move, {x: width, y: 0});
+                    }
+                });
+            }
+
+            // Initialize everything
+            initializeElements();
+
+            function move(element, params) {
+                var currentLeft = parseInt(element.style.left) || 0;
+                var currentTop = parseInt(element.style.top) || 0;
+                element.style.left = (currentLeft + params.x) + "px";
+                element.style.top = (currentTop + params.y) + "px";
+            }
+
+            function setClassProperty(elementClass, property, value) {
+                var classIndex = uniqueClasses.indexOf(elementClass);
+                if (classIndex === -1) return;
+                
+                var classElements = jaggedArray[classIndex];
+                classElements.forEach(element => {
+                    element.style[property] = value;
+                });
+            }
+
+            function runFunc(elementClass, func, params) {
+                var classIndex = uniqueClasses.indexOf(elementClass);
+                if (classIndex === -1) return;
+                
+                var classElements = jaggedArray[classIndex];
+                classElements.forEach(element => {
+                    func(element, params);
+                });
+            }
+
+            function onSelect(value) {
+                if (!value || value.toLowerCase() == current || !canChange) return;
+                canChange = false;
+                // Show selected class
+                setClassProperty(value.toLowerCase(), "opacity", "1");
+                runFunc(current, move, {x: -width, y: 0});
+                runFunc(value.toLowerCase(), move, {x: -width, y: 0});
+                setTimeout(() => {
+                    setClassProperty(current, "opacity", "0");
+                    runFunc(current, move, {x: 2 * width, y: 0});
+                }, 1500);
+                setTimeout(() => {
+                    uniqueClasses.forEach(className => {
+                        setClassProperty(className, "opacity", "1");
+                    });
+                    canChange = true;
+                    current = value.toLowerCase();
+                }, 3000);
+            }
+        </script>
+    </body>
+</html>
