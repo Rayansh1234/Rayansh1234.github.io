@@ -85,6 +85,8 @@ It should be noted that most modern Latin courses are based on the classical per
             var jaggedArray = [];
             var current = "a"
             var canChange = true;
+            var scale = parseFloat(getComputedStyle(document.documentElement)
+                .getPropertyValue('--font-size-scale')) || 1;
 
             // Initialize elements
             function initializeElements() {
@@ -97,7 +99,7 @@ It should be noted that most modern Latin courses are based on the classical per
                 // Position elements within their classes
                 jaggedArray.forEach(classElements => {
                     classElements.forEach((element, index) => {
-                        element.style.top = (60 + (index * 40)) + "px";
+                        element.style.top = (60 + (index * 40 * scale)) + "px";
                         element.style.left = "20px";
                     });
                 });
@@ -110,6 +112,7 @@ It should be noted that most modern Latin courses are based on the classical per
                     }
                 });
             }
+
             // Initialize everything
             initializeElements();
 
