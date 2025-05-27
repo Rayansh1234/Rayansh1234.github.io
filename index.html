@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <style>
             :root {
-                --font-size-scale: 2;
+                --font-size-scale: 1.6;
             }
             body {
                 background-color: black;
@@ -29,10 +29,10 @@
                 width: calc(100vw - 40px);
             }
             p {font-size: calc(var(--font-size-scale) * 18px);}
-            h3 {font-size: calc(var(--font-size-scale) * 20px);}
-            h2 {font-size: calc(var(--font-size-scale) * 23px);}
+            h3 {font-size: calc(var(--font-size-scale) * 22px);}
+            h2 {font-size: calc(var(--font-size-scale) * 25px);}
             h1 {
-                font-size: calc(var(--font-size-scale) * 26px);
+                font-size: calc(var(--font-size-scale) * 28px);
                 text-align: center;
             }
             select {
@@ -85,8 +85,8 @@ It should be noted that most modern Latin courses are based on the classical per
             var jaggedArray = [];
             var current = "a"
             var canChange = true;
-            var scale = getComputedStyle(document.documentElement)
-                .getPropertyValue('--font-size-scale');
+            var scale = parsefloat(getComputedStyle(document.documentElement)
+                .getPropertyValue('--font-size-scale'));
 
             // Initialize elements
             function initializeElements() {
