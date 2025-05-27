@@ -21,7 +21,7 @@
                 width: 100%;
                 font-family: 'Times New Roman', Times, serif;
             }
-            p, h1, h2, h3, img {
+            p, h1, h2, h3 {
                 transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1), 
                 left 1.5s cubic-bezier(0.4, 0, 0.2, 1), 
                 top 1.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -32,6 +32,9 @@
                 position: relative !important;
                 opacity: 1 !important;
                 z-index: 10;
+                transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                left 1.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                top 1.5s cubic-bezier(0.4, 0, 0.2, 1);
             }
             p {font-size: calc(var(--font-size-scale) * 18px);}
             h3 {font-size: calc(var(--font-size-scale) * 22px);}
@@ -68,18 +71,16 @@
             The history of Latin in Ancient Rome and it's impact on the modern world.
         </p>
         <img 
-            src="latin_text.jpg" 
-            alt="Latin Text" 
+            src="/latin_text.jpg" 
             class="a" 
             style="
+                width: 100%;
                 max-width: 120%; 
                 height: auto; 
                 display: block; 
                 margin: 150px auto 20px; 
                 transform: scale(1.2);
             " 
-            onerror="console.error('Failed to load image:', this.src)"
-            onload="console.log('Image loaded successfully:', this.src)"
         />
         <h2 class="b">
             B is for Banana
