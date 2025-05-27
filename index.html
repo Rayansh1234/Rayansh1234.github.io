@@ -141,9 +141,9 @@ It should be noted that most modern Latin courses are based on the classical per
             function move(element, params) {
                 var currentLeft = parseInt(element.style.left) || 0;
                 var currentTop = parseInt(element.style.top) || 0;
+                console.log(`${element.style.left} + ${params.x} = ${elements.style.left + params.x}`);
                 element.style.left = (currentLeft + params.x) + "px";
                 element.style.top = (currentTop + params.y) + "px";
-                console.log(`${element.style.left} + {params.x}`);
             }
 
             function setClassProperty(elementClass, property, value) {
