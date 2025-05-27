@@ -28,6 +28,11 @@
                 position: absolute;
                 width: calc(100vw - 40px);
             }
+            img {
+                position: relative !important;
+                opacity: 1 !important;
+                z-index: 10;
+            }
             p {font-size: calc(var(--font-size-scale) * 18px);}
             h3 {font-size: calc(var(--font-size-scale) * 22px);}
             h2 {font-size: calc(var(--font-size-scale) * 25px);}
@@ -51,7 +56,7 @@
     <body>
         <select onchange="onSelect(this.value)" style="position: relative; margin-top: 20px;">
             <option value="">Select an action</option>
-            <option value="A">Show A</option>
+            <option value="A">Home page</option>
             <option value="B">Show B</option>
             <option value="C">Show C</option>
             <option value="D">Show D</option>
@@ -73,6 +78,8 @@
                 margin: 150px auto 20px; 
                 transform: scale(1.2);
             " 
+            onerror="console.error('Failed to load image:', this.src)"
+            onload="console.log('Image loaded successfully:', this.src)"
         />
         <h2 class="b">
             B is for Banana
