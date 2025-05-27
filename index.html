@@ -29,10 +29,10 @@
                 width: calc(100vw - 40px);
             }
             p {font-size: calc(var(--font-size-scale) * 18px);}
-            h3 {font-size: calc(var(--font-size-scale) * 24px);}
-            h2 {font-size: calc(var(--font-size-scale) * 27px);}
+            h3 {font-size: calc(var(--font-size-scale) * 20px);}
+            h2 {font-size: calc(var(--font-size-scale) * 23px);}
             h1 {
-                font-size: calc(var(--font-size-scale) * 28px);
+                font-size: calc(var(--font-size-scale) * 26px);
                 text-align: center;
             }
             select {
@@ -85,8 +85,6 @@ It should be noted that most modern Latin courses are based on the classical per
             var jaggedArray = [];
             var current = "a"
             var canChange = true;
-            var scale = parsefloat(getComputedStyle(document.documentElement)
-                .getPropertyValue('--font-size-scale'));
 
             // Initialize elements
             function initializeElements() {
@@ -99,7 +97,7 @@ It should be noted that most modern Latin courses are based on the classical per
                 // Position elements within their classes
                 jaggedArray.forEach(classElements => {
                     classElements.forEach((element, index) => {
-                        element.style.top = (60 + (index * 40 * scale)) + "px";
+                        element.style.top = (60 + (index * 40)) + "px";
                         element.style.left = "20px";
                     });
                 });
@@ -154,13 +152,8 @@ It should be noted that most modern Latin courses are based on the classical per
                     runFunc(current, move, {x: 2 * width, y: 0});
                 }, 1500);
                 setTimeout(() => {
-                    // Only set opacity 1 for the current class
-                    setClassProperty(value.toLowerCase(), "opacity", "1");
-                    // Keep other classes hidden
                     uniqueClasses.forEach(className => {
-                        if (className !== value.toLowerCase()) {
-                            setClassProperty(className, "opacity", "0");
-                        }
+                        setClassProperty(className, "opacity", "1");
                     });
                     canChange = true;
                     current = value.toLowerCase();
