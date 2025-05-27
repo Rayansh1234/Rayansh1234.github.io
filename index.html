@@ -121,7 +121,7 @@ It should be noted that most modern Latin courses are based on the classical per
                     classElements.forEach((element, index) => {
                         element.style.top = (60 + (index * 40 * scale)) + "px";
                         if (element.tagName.toLowerCase() !== "img") {
-                            element.style.left = parseInt(element.style.left) * width / 100;
+                            element.style.left = parseInt(element.style.left) * width / 100 + "px";
                         }
                     });
                 });
