@@ -154,8 +154,13 @@ It should be noted that most modern Latin courses are based on the classical per
                     runFunc(current, move, {x: 2 * width, y: 0});
                 }, 1500);
                 setTimeout(() => {
+                    // Only set opacity 1 for the current class
+                    setClassProperty(value.toLowerCase(), "opacity", "1");
+                    // Keep other classes hidden
                     uniqueClasses.forEach(className => {
-                        setClassProperty(className, "opacity", "1");
+                        if (className !== value.toLowerCase()) {
+                            setClassProperty(className, "opacity", "0");
+                        }
                     });
                     canChange = true;
                     current = value.toLowerCase();
