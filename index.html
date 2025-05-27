@@ -78,8 +78,8 @@
                 height: auto; 
                 display: block; 
                 margin: 150px auto 20px; 
+                left: 70vw;
                 transform: scale(1.2);
-                left: 50%;
             " 
         />
         <h2 class="b">
@@ -119,8 +119,10 @@ It should be noted that most modern Latin courses are based on the classical per
                 // Position elements within their classes
                 jaggedArray.forEach(classElements => {
                     classElements.forEach((element, index) => {
-                        element.style.top = (60 + (index * 40 * scale)) + "px";
-                        element.style.left = "20px";
+                        if (element.tagName.toLowerCase() !== "img") {
+                            element.style.top = (60 + (index * 40 * scale)) + "px";
+                            element.style.left = "20px";
+                        }
                     });
                 });
 
