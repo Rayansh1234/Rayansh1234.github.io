@@ -5,6 +5,10 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <style>
+            :root {
+                --font-size-base: 20px;
+                --font-size-scale: 1.2;
+            }
             body {
                 background-color: black;
                 color: white;
@@ -25,10 +29,13 @@
                 position: absolute;
                 width: calc(100vw - 40px);
             }
-            p {font-size: 20px;}
-            h3 {font-size: 24px;}
-            h2 {font-size: 26px;}
-            h1 {font-size: 32px;}
+            p {font-size: var(--font-size-base) * var(--font-size-scale) / 1.2;}
+            h3 {font-size: calc(var(--font-size-base) * var(--font-size-scale));}
+            h2 {font-size: calc(var(--font-size-base) * var(--font-size-scale) * 1.1);}
+            h1 {
+                font-size: calc(var(--font-size-base) * var(--font-size-scale) * 1.3);
+                text-align: center;
+            }
             select {
                 position: relative;
                 margin: 20px 0;
@@ -51,8 +58,11 @@
             <option value="D">Show D</option>
         </select>
         <h1 class="a">
-            A is for Apple
+            All About Latin
         </h1>
+        <p class="a">
+            The history of Latin in Ancient Rome and it's impact on the modern world.
+         </p>
         <h2 class="b">
             B is for Banana
         </h2>
