@@ -5,9 +5,11 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <style>
+            /* Root variable for font scaling */
             :root {
                 --font-size-scale: 1.6;
             }
+            /* Base body styling */
             body {
                 background-color: black;
                 color: white;
@@ -16,11 +18,13 @@
                 margin: 0px;
                 padding: 20px;
             }
+            /* HTML container styling */
             html {
                 overflow-x: hidden;
                 width: 100%;
                 font-family: 'Times New Roman', Times, serif;
             }
+            /* Text element transitions and positioning */
             p, h1, h2, h3 {
                 transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1), 
                 left 1.5s cubic-bezier(0.4, 0, 0.2, 1), 
@@ -28,6 +32,7 @@
                 position: absolute;
                 width: calc(100vw - 40px);
             }
+            /* Image transitions and positioning */
             img {
                 position: absolute;
                 z-index: 10;
@@ -35,6 +40,7 @@
                 left 1.5s cubic-bezier(0.4, 0, 0.2, 1), 
                 top 1.5s cubic-bezier(0.4, 0, 0.2, 1);
             }
+            /* Font size scaling for different text elements */
             p {font-size: calc(var(--font-size-scale) * 18px);}
             h3 {font-size: calc(var(--font-size-scale) * 22px);}
             h2 {font-size: calc(var(--font-size-scale) * 25px);}
@@ -42,6 +48,7 @@
                 font-size: calc(var(--font-size-scale) * 30px);
                 text-align: center;
             }
+            /* Dropdown menu styling */
             select {
                 position: relative;
                 margin: 20px 0;
@@ -56,18 +63,20 @@
         </style>
     </head>
     <body>
+        <!-- Navigation dropdown -->
         <select onchange="onSelect(this.value)" style="position: relative; margin-top: 20px;">
             <option value="">Select an action</option>
             <option value="A">Home page</option>
-            <option value="B">Show B</option>
-            <option value="C">Show C</option>
-            <option value="D">Show D</option>
+            <option value="B">Origins</option>
+            <option value="C">Impact</option>
         </select>
+
+        <!-- Home page content -->
         <h1 class="a">
             All About Latin
         </h1>
         <p class="a" style="text-align: center;">
-            The history of Latin in Ancient Rome and it's impact on the modern world.
+            The History of Latin in Ancient Rome and Its Impact on the Modern World.
         </p>
         <img 
             src="latin_text.jpg" 
@@ -82,35 +91,108 @@
                 transform: scale(1.2);
             " 
         />
-        <h2 class="b">
-            B is for Banana
-        </h2>
-        <h3 class="c">
-            C is for Carrot
-        </h3>
-        <h2 class="d">
-            Test Text
-        </h2>
-        <p class="d">
-            The following articles present a brief history of the Latin language periods, providing a synopsis of cultural, grammatical, and style differences that mark each major division. In addition and where appropriate, it is indicated where Latin has had an influence on modern languages both subordinate and cognate to Latin.
-
-It should be noted that most modern Latin courses are based on the classical period. This period is noted for its
+        <p class="a" style="top: 50vh; left: 30vw;">
+            By Rayansh
         </p>
+
+        <!-- Origins section -->
+        <h1 class="b">
+            Origins
+        </h1>
+        <p class="b">
+            Latin, which was first spoken by small communities near the lower Tiber River,
+            evolved from earlier Italic languages and expanded throughout Italy and most of western
+            and southern Europe. It also traveled to central and western Mediterranean coastal 
+            regions of Africa as Roman governmental power increased. The spoken Latin in different 
+            regions of the Roman Empire gave rise to the contemporary Romance languages.
+        </p>
+        <h2 class="b">
+            Impact on Ancient Rome
+        </h2>
+        <p class="b">
+            Latin was the basis for the Roman Languages such as Spanish and French. 
+            The language also facilitated the spread of ideas and cultural elements.
+            It also provided an insight into Ancient Rome through record keeping of
+            laws, philosophies and more.
+        </p>
+        <img 
+            src="spread_map.jpg" 
+            class="b" 
+            style="
+                width: 12vw;
+                max-width: 12vw; 
+                height: auto; 
+                display: block; 
+                margin: 150px auto 20px; 
+                left: 20vw;
+                top: 50vh;
+                transform: scale(1.2);
+            " 
+        />
+        <!-- Impact on later civilazations section -->
+        <h1 class="c">
+            Impact on Other Civilizations
+        </h1>        
+        <p class="c">
+            Vulgar Latin, the form of the language spoken by the common people of 
+            the Roman Empire, gave rise to the Romance languages, which include 
+            Italian, Spanish and others. The vocabulary, grammar, and syntax of
+            many contemporary languages have Latin influence, which connects them 
+            to their cultural and historical origins.
+         </p>
+         <h2 class="c">
+            Academics and Sciences
+         </h2>
+         <p class="c">
+            Latin has had a major influence on academic and scientific terminology 
+            outside of the Romance languages. Latin-based words and naming standards 
+            are still used in many scientific fields, including biology, botany, 
+            astronomy, and medicine. Its accuracy and universality made it possible 
+            for academics from many locales and backgrounds to interact efficiently, 
+            overcoming geographical obstacles and promoting the spread of information.
+         </p>
+         <img 
+            src="text_comparison.jpg" 
+            class="c" 
+            style="
+                width: 12vw;
+                max-width: 12vw; 
+                height: auto; 
+                display: block; 
+                margin: 150px auto 20px; 
+                left: 60vw;
+                top: 52vh;
+                transform: scale(1.2);
+            " 
+        />
         <script>
+            // Get viewport dimensions
             const width = window.innerWidth;
             const height = window.innerHeight;
+
+            // Get all elements with class attributes
             var elementsArray = Array.from(document.querySelectorAll("[class]"));
+            
+            // Get unique class names
             var uniqueClasses = [...new Set(
                 elementsArray.map(element => element.className))];
+            
+            // Array to store elements grouped by class
             var jaggedArray = [];
+            
+            // Current active section
             var current = "a"
+            
+            // Flag to prevent multiple transitions
             var canChange = true;
+            
+            // Get font scale factor
             var scale = parseFloat(getComputedStyle(document.documentElement)
                 .getPropertyValue('--font-size-scale')) || 1;
 
-            // Initialize elements
+            // Initialize elements and their positions
             function initializeElements() {
-                // Create jagged array
+                // Group elements by class
                 uniqueClasses.forEach(elementClass => {
                     jaggedArray.push(elementsArray.filter(element => 
                     element.className == elementClass))
@@ -118,15 +200,59 @@ It should be noted that most modern Latin courses are based on the classical per
 
                 // Position elements within their classes
                 jaggedArray.forEach(classElements => {
+                    let lastElementBottom = 0;
+                    let lastElementWasHeader = false;
                     classElements.forEach((element, index) => {
-                        element.style.top = (60 + (index * 40 * scale)) + "px";
-                        if (element.tagName.toLowerCase() !== "img") {
-                            element.style.left = parseInt(element.style.left) * width / 100 + "px";
+                        if (!element.style.top) {
+                            if (element.tagName.toLowerCase() === 'p') {
+                                // Position paragraph closer if last element was a header
+                                const spacing = lastElementWasHeader ? 20 : 40;
+                                element.style.top = (lastElementBottom + spacing) + "px";
+                                // Update last element position
+                                lastElementBottom = parseInt(element.style.top) + 60 * scale;
+                                lastElementWasHeader = false;
+                            } else if (element.tagName.toLowerCase().match(/^h[1-6]$/)) {
+                                // Position header 60px after the last element
+                                element.style.top = (lastElementBottom + 60) + "px";
+                                // Update last element position
+                                lastElementBottom = parseInt(element.style.top) + 40 * scale;
+                                lastElementWasHeader = true;
+                            } else {
+                                // Default positioning for other elements (not p or h1-h6)
+                                // Start at 60px and add 40px * scale for each element
+                                element.style.top = (60 + (index * 40 * scale)) + "px";
+                                // Update bottom position for next element
+                                lastElementBottom = parseInt(element.style.top) + 40 * scale;
+                                // Mark that last element was not a header
+                                lastElementWasHeader = false;
+                            }
+                        } else {
+                            // If element already has a top position (e.g., from inline style)
+                            // Convert vh percentage to pixels
+                            element.style.top = parseFloat(element.style.top) * height / 100 + "px";
+                            // Update bottom position for next element
+                            lastElementBottom = parseInt(element.style.top) + 40 * scale;
+                            // Mark that last element was not a header
+                            lastElementWasHeader = false;
+                        }
+                        // Handle horizontal positioning
+                        if (element.tagName.toLowerCase() === "img") {
+                            // For images, convert vw percentage to pixels
+                            element.style.left = parseFloat(element.style.left) * width / 100 + "px";
+                        } else { 
+                            // For other elements
+                            if (!element.style.left) {
+                                // If no left position specified, set to 20px
+                                element.style.left = "20px";
+                            } else {
+                                // If left position exists, convert vw percentage to pixels
+                                element.style.left = parseFloat(element.style.left) * width / 100 + "px";
+                            }
                         }
                     });
                 });
 
-                // Set initial visibility
+                // Set initial visibility of sections
                 uniqueClasses.forEach(className => {
                     if (className !== current) {
                         setClassProperty(className, "opacity", "0");
@@ -138,16 +264,15 @@ It should be noted that most modern Latin courses are based on the classical per
             // Initialize everything
             initializeElements();
 
+            // Move element by specified x and y offsets
             function move(element, params) {
                 var currentLeft = parseInt(element.style.left) || 0;
                 var currentTop = parseInt(element.style.top) || 0;
-                if (element.tagName.toLowerCase() === "img") {
-                    console.log(`${currentLeft} + ${params.x} = ${currentLeft + params.x}`);
-                }
                 element.style.left = (currentLeft + params.x) + "px";
                 element.style.top = (currentTop + params.y) + "px";
             }
 
+            // Set a CSS property for all elements in a class
             function setClassProperty(elementClass, property, value) {
                 var classIndex = uniqueClasses.indexOf(elementClass);
                 if (classIndex === -1) return;
@@ -158,6 +283,7 @@ It should be noted that most modern Latin courses are based on the classical per
                 });
             }
 
+            // Run a function on all elements in a class
             function runFunc(elementClass, func, params) {
                 var classIndex = uniqueClasses.indexOf(elementClass);
                 if (classIndex === -1) return;
@@ -168,17 +294,27 @@ It should be noted that most modern Latin courses are based on the classical per
                 });
             }
 
+            // Handle section changes
             function onSelect(value) {
                 if (!value || value.toLowerCase() == current || !canChange) return;
                 canChange = false;
-                // Show selected class
+                
+                // Show selected section
                 setClassProperty(value.toLowerCase(), "opacity", "1");
+                
+                // Move current section out
                 runFunc(current, move, {x: -width, y: 0});
+                
+                // Move new section in
                 runFunc(value.toLowerCase(), move, {x: -width, y: 0});
+                
+                // After transition, hide current section and reset its position
                 setTimeout(() => {
                     setClassProperty(current, "opacity", "0");
                     runFunc(current, move, {x: 2 * width, y: 0});
                 }, 1500);
+                
+                // After all transitions, update current section
                 setTimeout(() => {
                     uniqueClasses.forEach(className => {
                         setClassProperty(className, "opacity", "1");
